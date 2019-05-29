@@ -9,6 +9,8 @@ export class ServersComponent implements OnInit {
   allowNewServer = false;
   serverCreationsStatus = 'No Server was created!';
   serverName = '';
+  serverCreated = false;
+  servers = ['Test 1', 'Test 2'];
 
   constructor() {
     setTimeout(() => {
@@ -20,11 +22,13 @@ export class ServersComponent implements OnInit {
   }
 
   onCreateServer() {
-    this.serverCreationsStatus = 'Server was created!';
+    this.servers.push(this.serverName);
+    this.serverCreated = true;
+    this.serverCreationsStatus = 'Server was created! Name is ' + this.serverName;
   }
 
   onUpdateServerName(event: Event) {
-    this.serverName = (<HTMLInputElement>event.target).value;
+    this.serverName = (event.target as HTMLInputElement).value;
   }
 
 }
